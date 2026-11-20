@@ -1,0 +1,334 @@
+<!doctype html>
+<html lang="vi">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f6efe3">
+  <meta name="description" content="Một cuốn nhật ký nhỏ gửi lời tri ân và chúc mừng Ngày Nhà giáo Việt Nam 20/11 đến thầy cô.">
+  <title>Gửi thầy cô — Nhật ký 20/11</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,500;1,600&family=Shadows+Into+Light&display=swap');
+
+    :root {
+      color-scheme: light;
+      --ink: #413c38;
+      --muted: #82776e;
+      --paper: #fffaf1;
+      --paper-deep: #f3eadb;
+      --rose: #a95758;
+      --rose-dark: #85464a;
+      --sage: #78866e;
+      --line: rgba(130, 105, 78, .16);
+    }
+
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      min-height: 100vh;
+      color: var(--ink);
+      background:
+        radial-gradient(ellipse at 12% 18%, rgba(223, 196, 163, .25), transparent 30%),
+        radial-gradient(ellipse at 88% 84%, rgba(181, 149, 133, .18), transparent 32%),
+        #f6efe3;
+      font-family: 'DM Sans', sans-serif;
+      overflow-x: hidden;
+    }
+    button { font: inherit; }
+    .scene {
+      min-height: 100vh;
+      padding: 28px 20px 34px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      isolation: isolate;
+    }
+    .scene::before, .scene::after {
+      content: '✳';
+      position: fixed;
+      z-index: -1;
+      color: rgba(169, 87, 88, .16);
+      font-size: clamp(90px, 16vw, 220px);
+      pointer-events: none;
+    }
+    .scene::before { top: 5%; left: 3%; transform: rotate(-17deg); }
+    .scene::after { content: '✿'; bottom: 1%; right: 4%; color: rgba(120, 134, 110, .17); transform: rotate(12deg); }
+    .topline {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 24px;
+      color: var(--muted);
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: .22em;
+      text-transform: uppercase;
+    }
+    .topline::before, .topline::after { content: ''; width: 30px; height: 1px; background: #cbb9a3; }
+    .journal-wrap { width: min(100%, 920px); perspective: 1800px; }
+    .journal {
+      min-height: 520px;
+      position: relative;
+      transform-style: preserve-3d;
+      transition: transform 1.05s cubic-bezier(.2,.72,.24,1);
+    }
+    .journal.is-open { transform: rotateY(-8deg) translateX(3%); }
+    .cover {
+      position: absolute;
+      z-index: 4;
+      inset: 0 auto 0 0;
+      width: 100%;
+      border: 1px solid rgba(255,255,255,.32);
+      border-radius: 12px 20px 20px 12px;
+      padding: 44px 24px;
+      display: grid;
+      place-items: center;
+      overflow: hidden;
+      color: #fff8eb;
+      text-align: center;
+      background:
+        linear-gradient(135deg, rgba(255,255,255,.08), transparent 45%),
+        repeating-linear-gradient(90deg, transparent 0 7px, rgba(44,23,21,.035) 8px, transparent 9px),
+        #754b48;
+      box-shadow: 0 30px 70px rgba(67, 45, 37, .24), inset 10px 0 15px rgba(35, 18, 19, .22), inset -2px 0 3px rgba(255,255,255,.13);
+      transform-origin: left center;
+      transition: transform 1.15s cubic-bezier(.2,.72,.24,1), opacity .8s ease;
+      cursor: pointer;
+      backface-visibility: hidden;
+    }
+    .cover::before {
+      content: '';
+      position: absolute;
+      inset: 16px;
+      border: 1px solid rgba(255, 239, 218, .35);
+      border-radius: 8px 14px 14px 8px;
+      pointer-events: none;
+    }
+    .cover::after {
+      content: '❧';
+      position: absolute;
+      right: 8%; bottom: -34px;
+      color: rgba(255, 239, 218, .12);
+      font: 180px 'Playfair Display', serif;
+      transform: rotate(-24deg);
+    }
+    .journal.is-open .cover { transform: rotateY(-155deg); opacity: 0; pointer-events: none; }
+    .cover-inner { position: relative; z-index: 1; max-width: 500px; }
+    .cover-stamp {
+      width: 58px; height: 58px; margin: 0 auto 22px;
+      display: grid; place-items: center;
+      border: 1px solid rgba(255,248,235,.65); border-radius: 50%;
+      color: #f4d8c3; font-size: 25px;
+    }
+    .cover-kicker { font-size: 11px; letter-spacing: .25em; text-transform: uppercase; opacity: .8; }
+    .cover h1 { margin: 13px 0 11px; font: 600 clamp(38px, 7vw, 66px)/1.07 'Playfair Display', serif; }
+    .cover p { margin: 0; font: italic 17px 'Playfair Display', serif; color: #f1dfd0; }
+    .cover-date { display: block; margin-top: 37px; font-size: 11px; letter-spacing: .2em; opacity: .76; }
+    .open-hint { display: inline-flex; gap: 8px; align-items: center; margin-top: 35px; font-size: 12px; color: #fff3e5; }
+    .open-hint span { animation: nudge 1.6s ease-in-out infinite; }
+    @keyframes nudge { 50% { transform: translateX(5px); } }
+
+    .spread {
+      min-height: 520px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      background: var(--paper);
+      border-radius: 12px 20px 20px 12px;
+      box-shadow: 0 30px 70px rgba(67, 45, 37, .2);
+      overflow: hidden;
+      position: relative;
+    }
+    .spread::after {
+      content: ''; position: absolute; top: 0; bottom: 0; left: 50%; width: 34px;
+      transform: translateX(-50%);
+      background: linear-gradient(90deg, transparent, rgba(77, 54, 43, .08), rgba(255,255,255,.72), rgba(77, 54, 43, .06), transparent);
+      pointer-events: none;
+    }
+    .page {
+      position: relative;
+      padding: 55px clamp(24px, 5vw, 62px) 48px;
+      background-image: repeating-linear-gradient(to bottom, transparent 0 31px, var(--line) 32px);
+      background-position: 0 121px;
+    }
+    .page:first-child { padding-right: clamp(34px, 6vw, 70px); }
+    .page:last-child { padding-left: clamp(34px, 6vw, 70px); }
+    .page::before { content: ''; position: absolute; top: 0; bottom: 0; left: 20px; width: 1px; background: rgba(169,87,88,.19); }
+    .page:last-child::before { left: 24px; }
+    .page-number { color: #a99a88; font-size: 10px; letter-spacing: .16em; text-transform: uppercase; }
+    .date-note { margin: 13px 0 22px; color: var(--rose); font: 18px 'Shadows Into Light', cursive; transform: rotate(-2deg); }
+    .salutation { margin: 0 0 17px; font: italic 23px 'Playfair Display', serif; color: var(--rose-dark); }
+    .letter {
+      margin: 0;
+      font: 16px/2 'Playfair Display', serif;
+      color: #504843;
+    }
+    .letter + .letter { margin-top: 18px; }
+    .page-title { margin: 12px 0 18px; font: 600 30px/1.2 'Playfair Display', serif; color: var(--rose-dark); }
+    .pressed-flower { display: block; margin: 18px auto 0; color: var(--sage); font-size: 26px; text-align: center; }
+    .signature { margin-top: 19px; text-align: right; color: var(--rose-dark); font: 22px 'Shadows Into Light', cursive; }
+    .signature small { display: block; margin-top: 3px; color: var(--muted); font: 11px 'DM Sans', sans-serif; letter-spacing: .08em; }
+    .page-turn { animation: pageIn .45s ease both; }
+    @keyframes pageIn { from { opacity: .3; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
+    .controls {
+      display: flex; align-items: center; justify-content: center; gap: 17px;
+      margin-top: 22px; opacity: 0; transform: translateY(8px);
+      transition: opacity .55s .45s ease, transform .55s .45s ease;
+    }
+    .journal.is-open ~ .controls { opacity: 1; transform: translateY(0); }
+    .control-btn {
+      width: 43px; height: 43px; border: 1px solid #d6c6b3; border-radius: 50%;
+      background: rgba(255,250,241,.76); color: var(--rose-dark); cursor: pointer;
+      transition: transform .2s, background .2s, opacity .2s;
+    }
+    .control-btn:hover:not(:disabled) { transform: translateY(-2px); background: white; }
+    .control-btn:disabled { opacity: .38; cursor: default; }
+    .page-status { min-width: 88px; text-align: center; color: var(--muted); font-size: 11px; letter-spacing: .1em; }
+    .bottom-note { margin-top: 21px; color: #93877b; font: italic 13px 'Playfair Display', serif; }
+    .sparkle { position: fixed; z-index: 10; pointer-events: none; animation: drift 1.5s ease-out forwards; }
+    @keyframes drift { to { transform: translate(var(--dx), -90px) rotate(80deg); opacity: 0; } }
+
+    @media (max-width: 650px) {
+      .scene { padding: 24px 15px 28px; justify-content: flex-start; }
+      .topline { margin: 9px 0 20px; font-size: 9px; }
+      .journal { min-height: 0; }
+      .cover { min-height: 600px; position: relative; padding: 36px 22px; }
+      .spread { min-height: 620px; display: block; }
+      .spread::after { display: none; }
+      .page { min-height: 620px; padding: 42px 32px 38px; background-position: 0 111px; }
+      .page:first-child, .page:last-child { padding: 42px 32px 38px; }
+      .page:last-child { border-top: 1px dashed rgba(130,105,78,.28); }
+      .page::before, .page:last-child::before { left: 17px; }
+      .letter { font-size: 15px; line-height: 1.9; }
+      .journal.is-open { transform: none; }
+      .journal.is-open .cover { position: absolute; }
+      .controls { margin-top: 17px; }
+      .bottom-note { margin-top: 18px; text-align: center; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { scroll-behavior: auto !important; animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; }
+    }
+  </style>
+</head>
+<body>
+  <main class="scene">
+    <div class="topline">Một món quà nhỏ từ trái tim</div>
+    <div class="journal-wrap">
+      <section class="journal" id="journal" aria-label="Nhật ký lời chúc 20 tháng 11">
+        <button class="cover" id="cover" type="button" aria-label="Mở cuốn nhật ký">
+          <span class="cover-inner">
+            <span class="cover-stamp" aria-hidden="true">❀</span>
+            <span class="cover-kicker">Nhật ký — trang đặc biệt</span>
+            <h1>Gửi thầy cô<br>thương mến</h1>
+            <p>Những lời chưa kịp nói thành lời</p>
+            <span class="cover-date">20 · 11 · NGÀY NHÀ GIÁO VIỆT NAM</span>
+            <span class="open-hint">Mở cuốn nhật ký <span aria-hidden="true">→</span></span>
+          </span>
+        </button>
+        <div class="spread" aria-live="polite">
+          <article class="page" id="page-left"></article>
+          <article class="page" id="page-right"></article>
+        </div>
+      </section>
+      <nav class="controls" aria-label="Điều hướng các trang nhật ký">
+        <button class="control-btn" id="prev" type="button" aria-label="Trang trước">←</button>
+        <span class="page-status" id="status">Trang 1 / 2</span>
+        <button class="control-btn" id="next" type="button" aria-label="Trang tiếp theo">→</button>
+      </nav>
+    </div>
+    <p class="bottom-note">Lật từng trang, để những điều dịu dàng được ở lại lâu hơn.</p>
+  </main>
+  <script>
+    const pages = [
+      {
+        left: `<div class="page-number">Trang 01 · Lời chúc</div>
+          <div class="date-note">Thứ năm, ngày 20 tháng 11</div>
+          <h2 class="salutation">Kính gửi thầy cô,</h2>
+          <p class="letter">Nhân ngày Nhà giáo Việt Nam 20/11, em kính chúc thầy cô luôn mạnh khỏe, bình an và hạnh phúc. Mong mỗi ngày đến trường đều mang đến cho thầy cô niềm vui, những nụ cười ấm áp và thật nhiều yêu thương từ những thế hệ học trò.</p>
+          <span class="pressed-flower" aria-hidden="true">❧</span>`,
+        right: `<div class="page-number">Trang 02 · Niềm tin</div>
+          <h2 class="page-title">Gieo những<br>ước mơ</h2>
+          <p class="letter">Em mong thầy cô luôn giữ được sự nhiệt thành với nghề, có thêm nhiều động lực để tiếp tục gieo tri thức và nuôi dưỡng những ước mơ. Chúc những tận tâm thầm lặng của thầy cô luôn được trân trọng, những điều tốt đẹp thầy cô trao đi sẽ trở về bằng niềm vui và sự yêu quý chân thành.</p>
+          <div class="signature">Với tất cả lòng biết ơn<small>— Một người học trò</small></div>`
+      },
+      {
+        left: `<div class="page-number">Trang 03 · Ký ức</div>
+          <div class="date-note">Một miền nhớ dịu dàng</div>
+          <h2 class="page-title">Cuốn nhật ký<br>tuổi học trò</h2>
+          <p class="letter">Nếu tuổi học trò là một cuốn nhật ký, em xin gửi vào trang viết hôm nay lời chúc tốt đẹp nhất dành tặng thầy cô. Mong những ký ức lớp học luôn là miền nhớ dịu dàng, để mỗi lần nghĩ về, thầy cô đều thấy lòng mình ấm lại.</p>
+          <span class="pressed-flower" aria-hidden="true">✿</span>`,
+        right: `<div class="page-number">Trang 04 · Bình an</div>
+          <h2 class="salutation">Chúc mừng ngày 20/11!</h2>
+          <p class="letter">Chúc thầy cô có một ngày 20/11 thật ý nghĩa, bên gia đình, đồng nghiệp và những học trò thương mến. Mong thầy cô luôn có thời gian nghỉ ngơi, chăm sóc bản thân và tận hưởng những điều bình dị, để mỗi ngày đều là một ngày an yên.</p>
+          <div class="signature">Thương mến và biết ơn<small>Chúc thầy cô luôn an yên</small></div>`
+      }
+    ];
+
+    const journal = document.getElementById('journal');
+    const cover = document.getElementById('cover');
+    const leftPage = document.getElementById('page-left');
+    const rightPage = document.getElementById('page-right');
+    const prev = document.getElementById('prev');
+    const next = document.getElementById('next');
+    const status = document.getElementById('status');
+    let current = 0;
+    let opened = false;
+
+    function renderPage() {
+      leftPage.innerHTML = pages[current].left;
+      rightPage.innerHTML = pages[current].right;
+      leftPage.classList.remove('page-turn');
+      rightPage.classList.remove('page-turn');
+      requestAnimationFrame(() => {
+        leftPage.classList.add('page-turn');
+        rightPage.classList.add('page-turn');
+      });
+      status.textContent = `Trang ${current + 1} / ${pages.length}`;
+      prev.disabled = current === 0;
+      next.disabled = current === pages.length - 1;
+    }
+
+    function openJournal() {
+      if (opened) return;
+      opened = true;
+      journal.classList.add('is-open');
+      cover.setAttribute('aria-expanded', 'true');
+      renderPage();
+      sprinkle();
+    }
+
+    function turnPage(direction) {
+      const target = current + direction;
+      if (!opened || target < 0 || target >= pages.length) return;
+      current = target;
+      renderPage();
+      sprinkle();
+    }
+
+    function sprinkle() {
+      const symbols = ['✦', '✿', '·', '❀', '✧'];
+      for (let i = 0; i < 13; i++) {
+        const star = document.createElement('span');
+        star.className = 'sparkle';
+        star.textContent = symbols[Math.floor(Math.random() * symbols.length)];
+        star.style.left = `${38 + Math.random() * 24}vw`;
+        star.style.top = `${42 + Math.random() * 20}vh`;
+        star.style.color = Math.random() > .5 ? '#a95758' : '#78866e';
+        star.style.fontSize = `${10 + Math.random() * 15}px`;
+        star.style.setProperty('--dx', `${(Math.random() - .5) * 150}px`);
+        document.body.appendChild(star);
+        star.addEventListener('animationend', () => star.remove(), { once: true });
+      }
+    }
+
+    cover.addEventListener('click', openJournal);
+    prev.addEventListener('click', () => turnPage(-1));
+    next.addEventListener('click', () => turnPage(1));
+    document.addEventListener('keydown', (event) => {
+      if (event.key === 'Enter' && !opened) openJournal();
+      if (event.key === 'ArrowRight') opened ? turnPage(1) : openJournal();
+      if (event.key === 'ArrowLeft') turnPage(-1);
+    });
+  </script>
+</body>
+</html>
